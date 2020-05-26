@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { parseISO } from 'date-fns';
-import { CREATED, BAD_REQUEST } from 'http-status';
+import { CREATED } from 'http-status';
 import { getCustomRepository } from 'typeorm';
 
 import CreateAppointmentService from '../services/CreateAppointmentService';
@@ -20,20 +20,16 @@ appointmentsRouter.get('/', async (request, response) => {
 });
 
 appointmentsRouter.post('/', async (request, response) => {
-  try {
-    const { provider_id, date } = request.body;
+  const { provider_id, date } = request.body;
 
-    const parsedDate = parseISO(date);
+  const parsedDate = parseISO(date);
 
-    const appointment = await CreateAppointmentService.execute({
-      date: parsedDate,
-      provider_id,
-    });
+  const appointment = await CreateAppointmentService.execute({
+    date: parsedDate,
+    provider_id,
+  });
 
-    return response.status(CREATED).json(appointment);
-  } catch (err) {
-    return response.status(BAD_REQUEST).json({ error: err.message });
-  }
+  return response.status(CREATED).json(appointment);
 });
 
 export default appointmentsRouter;
