@@ -3,10 +3,10 @@ import path from 'path';
 import fs from 'fs';
 import { UNAUTHORIZED } from 'http-status';
 
-import AppError from '../errors/AppError';
+import AppError from '@shared/errors/AppError';
 
-import uploadConfig from '../config/upload';
-import User from '../models/User';
+import uploadConfig from '@config/upload';
+import User from '../infra/typeorm/entities/User';
 
 interface RequestDTO {
   userId: string;

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { INTERNAL_SERVER_ERROR } from 'http-status';
 
-import AppError from '../errors/AppError';
+import AppError from '@shared/errors/AppError';
 
 export default function handleErrors(
   error: Error,
